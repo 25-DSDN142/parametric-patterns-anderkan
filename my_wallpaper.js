@@ -1,22 +1,23 @@
 //your parameter variables go here!
 let rect_width  = 150;
 let rect_height = 150;
-let n = 10;
-let startN = 100;
+let n = 2;
+let startN = 180;
 let weight = 1;
-let colour1 = '0';
+let colour1 = 'red';
 let colour2 = 'black';
-let colour3 = 'red';
-let squareN = 100;
-//let background = true;
+let colour3 = 'orange';
+let colour4 = 'white';
+let squareN = 2; 
+let glyphPos = 1;
 
 
 function setup_wallpaper(pWallpaper) {
-  pWallpaper.output_mode(DEVELOP_GLYPH);
-  //pWallpaper.output_mode(GRID_WALLPAPER);
+  //pWallpaper.output_mode(DEVELOP_GLYPH);
+  pWallpaper.output_mode(GRID_WALLPAPER);
   
-  pWallpaper.resolution(FIT_TO_SCREEN);
-  pWallpaper.show_guide(true); //set this to false when you're ready to print
+  pWallpaper.resolution(NINE_PORTRAIT);
+  pWallpaper.show_guide(false); //set this to false when you're ready to print
 
   //Grid settings
   pWallpaper.grid_settings.cell_width  = 200;
@@ -30,17 +31,22 @@ function wallpaper_background() {
 }
 
 function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
-backgroundMaker(colour3,squareN);
+backgroundMaker(colour3,colour4,squareN);
 glyph(55,45,n,startN,weight,colour1,colour2);
 glyph(145,45,n,startN,weight,colour1,colour2);
 glyphNeg(55,155,n,startN,weight,colour1,colour2);
 glyphNeg(145,155,n,startN,weight,colour1,colour2);
-border(weight,colour2,colour3);
+border(weight,colour2,colour3,colour4);
 
 }
 
 
 function glyph(x,y,n,startN,weight,colour1,colour2){
+  //function to generate circular symbols
+  if(glyphPos == 2){
+    return;
+  } //decides if program draws vertical glyphs (1), negative glyphs (2), or both (3)
+  
   fill(colour1);
   if(colour1 == '0'){
     fill(0,0);
@@ -54,9 +60,15 @@ function glyph(x,y,n,startN,weight,colour1,colour2){
     stroke(colour2);
   }
 }
+
 function glyphNeg(x,y,n,startN,weight,colour1,colour2){
+  //fucntion to generate circular symbols
+ if(glyphPos == 1){
+    return;
+  } //decides if program draws vertical glyphs (1), negative glyphs (2), or both (3)
+  
   fill(colour1);
-    if(colour1 == '0'){
+  if(colour1 == '0'){
     fill(0,0);
   } //workaround for getting fill to be transparent and work with parameters
 
@@ -69,8 +81,9 @@ function glyphNeg(x,y,n,startN,weight,colour1,colour2){
   }
 
 }
-function border(weight,colour2,colour3){
-  stroke(212, 92, 36);
+
+function border(weight,colour2,colour3,colour4){
+  stroke(colour4);
   fill(colour2);
   strokeWeight(weight);
   rect(0,195,200,5);
@@ -94,12 +107,11 @@ function pattern(x,y,colour3){
   line(3+x,3+y,3+x,3+y);
   line(2+x,3+y,2+x,3+y);
   line(3+x,2+y,3+x,2+y);
-  //stroke(colour3);
 }
 
-function backgroundMaker(colour3,squareN){
-  //if (){
+function backgroundMaker(colour3,colour4,squareN){
   fill(colour3);
+  stroke(colour4);
   let size = 200/squareN;
  for(let i = 0;i < squareN;i+=1){
   for(let d = 0;d < squareN;d+=1){
