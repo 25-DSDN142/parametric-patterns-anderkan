@@ -1,22 +1,22 @@
 //your parameter variables go here!
 let rect_width  = 150;
 let rect_height = 150;
-let n = 2;
-let startN = 180;
+let n = 4;
+let startN = 200;
 let weight = 1;
-let colour1 = 'red';
+let colour1 = 'maroon';
 let colour2 = 'black';
-let colour3 = 'orange';
+let colour3 = 'black';
 let colour4 = 'white';
-let squareN = 2; 
-let glyphPos = 1;
+let squareN = 25; 
+let glyphPos = 2;
 
 
 function setup_wallpaper(pWallpaper) {
   //pWallpaper.output_mode(DEVELOP_GLYPH);
   pWallpaper.output_mode(GRID_WALLPAPER);
   
-  pWallpaper.resolution(NINE_PORTRAIT);
+  pWallpaper.resolution(A3);
   pWallpaper.show_guide(false); //set this to false when you're ready to print
 
   //Grid settings
